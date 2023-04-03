@@ -1,0 +1,45 @@
+<form id="cargaVJ">
+  <label for="input_nombre">Nombre</label>
+  <input
+    id="input_nombre"
+    name="nombre"
+    type="text"
+    placeholder="ingrese nombre"
+  /><br />
+  <label for="input_genero">Genero</label>
+  <input
+    id="input_genero"
+    name="genero"
+    type="text"
+    placeholder="ingrese genero"
+  /><br />
+  <label for="input_plataforma">Plataforma</label>
+  <input
+    id="input_plataforma"
+    name="plataforma"
+    type="text"
+    placeholder="ingrese plataforma"
+  /><br />
+  <button type="submit">Guardar</button>
+</form>
+<br />
+<h1>Video Juegos Disponibles</h1>
+<div id="contenedor">
+  {{#if listVJ}}
+    <ul>
+      {{#each videojuegos}}
+        <li>Nombre:{{this.nombre}}
+          | Genero:{{this.genero}}
+          | Plataforma:{{this.plataforma}}
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No Hay videojuegos para mostrar...</p>
+  {{/if}}
+</div>
+
+{{! sokcet }}
+<script src="/socket.io/socket.io.js"></script>
+{{! js cliente}}
+<script src="/js/index.js"></script>
