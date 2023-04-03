@@ -3,7 +3,7 @@ import { MONGODB_CNX_STR } from "../config/database.config.js";
 
 export async function conectar() {
   await mongoose.connect(
-    "mongodb+srv://joaCode19:4756643joa@cluster0.tmp8a5p.mongodb.net/Videojuegos?retryWrites=true&w=majority"
+    "mongodb+srv://joaCode19:******@cluster0.tmp8a5p.mongodb.net/Videojuegos?retryWrites=true&w=majority"
   );
 
   // await mongoose.connect(MONGODB_CNX_STR);
