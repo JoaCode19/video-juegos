@@ -3,21 +3,6 @@ const socket = io();
 
 const formCargaVideojuego = document.querySelector("#cargaVJ");
 
-// const plantilla = `{{#if listVJ}}
-//   <ul>
-//     {{#each videojuegos}}
-//       <li>Nombre:{{this.nombre}}
-//         | Genero:{{this.genero}}
-//         | Plataforma:{{this.plataforma}}
-//       </li>
-//     {{/each}}
-//   </ul>
-// {{else}}
-//   <p>No Hay videojuegos para mostrar...</p>
-// {{/if}}`;
-
-// const reloadListado = Handlebars.compile("plantilla");
-
 if (formCargaVideojuego instanceof HTMLFormElement) {
   formCargaVideojuego.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -34,14 +19,29 @@ if (formCargaVideojuego instanceof HTMLFormElement) {
   });
 }
 
-// socket.on("reloadVJ", (videojuegosr) => {
-//   const contenedor = document.querySelector("#contenedor");
+const plantilla = `{{#if listVJ}}
+  <ul>
+    {{#each videojuegos}}
+      <li>Nombre:{{this.nombre}}
+        | Genero:{{this.genero}}
+        | Plataforma:{{this.plataforma}}
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No Hay videojuegos para mostrar...</p>
+{{/if}}`;
 
-//   if (contenedor) {
-//     contenedor.innerHTML = reloadListado({
-//       Title: "VideoJuegosRT",
-//       listVJ: videojuegosr.length > 0,
-//       videojuegos: videojuegosr,
-//     });
-//   }
-// });
+const reloadListado = Handlebars.compile(plantilla);
+
+socket.on("reloadVJ", (videojuegosr) => {
+  const contenedor = document.querySelector("#contenedor");
+
+  if (contenedor instanceof HTMLDivElement) {
+    contenedor.innerHTML = reloadListado({
+      Title: "VideoJuegosRT",
+      listVJ: videojuegosr.length > 0,
+      videojuegos: videojuegosr,
+    });
+  }
+});

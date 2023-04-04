@@ -18,7 +18,7 @@ const server = app.listen(PORT, () => {
   console.log(`main-view en http://localhost:8080/videojuegos`);
 });
 
-const io = new ServerSocketIo(server);
+export const io = new ServerSocketIo(server);
 
 io.on("connection", async (socket) => {
   console.log("cliente conectado");
